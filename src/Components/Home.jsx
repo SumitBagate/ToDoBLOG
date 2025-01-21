@@ -4,6 +4,7 @@ import { useEffect,useState } from 'react'
 import { auth ,db} from './firebase'
 
 
+
 function Feed({isAuth}) {
 
     const[postlist,setPostlist] = useState([]);
@@ -44,10 +45,13 @@ function Feed({isAuth}) {
                { isAuth&& post.auther?.id===auth.currentUser?.uid&&(<button onClick={()=>{deletePost(post.id)}}> &#128465;</button>)}
                   
                     
-                 
-              </div>
+           
+              </div> 
+                
             </div>
-            <div className="postTextContainer"> {post.postText} </div>
+            <div  
+               className="postTextContainer"
+               dangerouslySetInnerHTML={{ __html: post.content }}></div>
             <h3>@{post.auther?.name || 'Unknown Author'}</h3>
           </div>
         );
