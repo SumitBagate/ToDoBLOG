@@ -22,7 +22,7 @@ function Header({isAuth,setIsAuth}) {
     <div>
       <header className= " header  flex border-b py-4 px-4 sm:px-10 font-sans min-h-[70px] tracking-wide relative z-50">
         <div className="flex flex-wrap items-center gap-4 w-full">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to=" https://thunderboltz-18.github.io/tic_tac_toc/" className="flex items-center gap-2">
             <h3 className="text-2xl font-bold">Blog</h3>
           </Link>
 
