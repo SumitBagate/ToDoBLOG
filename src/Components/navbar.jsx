@@ -9,8 +9,6 @@ import { useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth'; // Firebase auth listen
 
 
-
-
     export default  function Navbar({isAuth,setIsAuth}) {
           
   const [user, setUser] = useState(null); // State to store user info
