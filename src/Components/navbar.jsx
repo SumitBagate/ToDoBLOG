@@ -1,31 +1,30 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import React from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase';
-import{useEffect} from 'react';
-import { useState } from 'react';   
-import { onAuthStateChanged } from 'firebase/auth'; // Firebase auth listen
+import { onAuthStateChanged } from 'firebase/auth'; // Firebase auth listener
 
-
-    export default  function Navbar({isAuth,setIsAuth}) {
-          
+export default function Navbar({ isAuth, setIsAuth }) {
   const [user, setUser] = useState(null); // State to store user info
+  const location = useLocation(); // To track current route
 
-        let navigate = useNavigate();
-         const signUserOut = () => {
-           signOut(auth).then(() => {
-             localStorage.clear();
-             setIsAuth(false);
-            navigate('/login');
-           })
-           .catch((error) => {
-             alert(error.message);
-           });
-         }
-         
-          // Monitor the auth state (user sign-in or sign-out)
+  let navigate = useNavigate();
+
+  const signUserOut = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.clear();
+        setIsAuth(false);
+        navigate('/login');
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }
+
+  // Monitor the auth state (user sign-in or sign-out)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -38,21 +37,16 @@ import { onAuthStateChanged } from 'firebase/auth'; // Firebase auth listen
     return () => unsubscribe(); // Clean up the listener
   }, []);
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-      }
-  
-      
-  
-       
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ');
+  }
 
-         const navigation = [
-            { name: 'Dashboard', href: '/', current: true },
-            { name: 'Post', href: '/post', current: false },
-            { name: 'Projects', href: '#', current: false },
-            { name: 'Calendar', href: '#', current: false },
-          ]
-
+  const navigation = [
+    { name: 'Dashboard', to: '/', current: location.pathname === '/' },
+    { name: 'Post', to: '/post', current: location.pathname === '/post' },
+    { name: 'Projects', to: '#', current: location.pathname === '#' },
+    { name: 'Calendar', to: '#', current: location.pathname === '#' },
+  ];
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -78,9 +72,9 @@ function classNames(...classes) {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.to}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -88,7 +82,7 @@ function classNames(...classes) {
                     )}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -110,14 +104,12 @@ function classNames(...classes) {
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
                   {user && (
-                        <img
-                            src={user.photoURL ||   "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-}
-                            alt="User profile"
-                            className="h-8 w-8 rounded-full"
-                        />
-                        )}
-
+                    <img
+                      src={user.photoURL || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
+                      alt="User profile"
+                      className="h-8 w-8 rounded-full"
+                    />
+                  )}
                 </MenuButton>
               </div>
               <MenuItems
@@ -125,12 +117,12 @@ function classNames(...classes) {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
               >
                 <MenuItem>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                   >
                     Your Profile
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
                   <a
@@ -141,13 +133,13 @@ function classNames(...classes) {
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     onClick={signUserOut}
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                   >
                     Sign out
-                  </a>
+                  </Link>
                 </MenuItem>
               </MenuItems>
             </Menu>
@@ -160,8 +152,8 @@ function classNames(...classes) {
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
-              as="a"
-              href={item.href}
+              as="Link"
+              to={item.to}
               aria-current={item.current ? 'page' : undefined}
               className={classNames(
                 item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -174,5 +166,5 @@ function classNames(...classes) {
         </div>
       </DisclosurePanel>
     </Disclosure>
-  )
+  );
 }
