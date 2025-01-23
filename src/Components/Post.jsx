@@ -21,12 +21,9 @@ function Post({isAuth}) {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
     toolbarButtonSize: 'middle',
     askBeforePasteHTML: 'False',
-    showPoweredBy: 'false',
-  
   
   });
 
-  
 let navigate = useNavigate();
 
   // Function to convert HTML content to plain text
