@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Us
 import "./App.css";
 import Login from "./Components/login";
 import Feed from "./Components/Home";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Components/navbar";
 function App() {
 
   const[isAuth,setIsAuth] = React.useState(localStorage
