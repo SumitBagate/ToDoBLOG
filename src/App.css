@@ -156,6 +156,12 @@ body {
     color: #eadfe9;
     text-shadow: 3px 4px 4px #563c53;
   }
+  .jodit .jodit_footer {
+    display: none !important;
+  }
+  .jodit .jodit_footer, .jodit .jodit_footer * {
+    display: none !important;
+  }
   
   .post .postTextContainer {
     word-wrap: break-word;

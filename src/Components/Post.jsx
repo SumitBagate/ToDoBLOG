@@ -21,8 +21,12 @@ function Post({isAuth}) {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
     toolbarButtonSize: 'middle',
     askBeforePasteHTML: 'False',
+    showPoweredBy: 'false',
+  
+  
   });
 
+  
 let navigate = useNavigate();
 
   // Function to convert HTML content to plain text
@@ -36,7 +40,7 @@ let navigate = useNavigate();
 const createPost=async()=>{
 await addDoc(postsCollectionRef,{title,postText,content,auther:{name: auth.currentUser.displayName ,id:auth.currentUser.uid  }}) 
 console.log(post)
-navigate ('/')
+navigate ('/Home')
 
 };
 
