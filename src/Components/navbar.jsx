@@ -160,7 +160,7 @@ function classNames(...classes) {
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
-              as="a"
+              as="Link"
               href={item.href}
               aria-current={item.current ? 'page' : undefined}
               className={classNames(
