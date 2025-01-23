@@ -8,8 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Us
 import "./App.css";
 import Login from "./Components/login";
 import Feed from "./Components/Home";
-import Navbar from "./Components/Navbar.jsx";
-
+import Navbar from "./Components/Navbar";
 function App() {
 
   const[isAuth,setIsAuth] = React.useState(localStorage
@@ -27,7 +26,7 @@ function App() {
       <Login isAuth={isAuth} setIsAuth={setIsAuth}/> */}
       <Routes>
         <Route path="/" element={<Feed isAuth={isAuth} />} />
-        <Route  path="/Header" element={<post isAuth={isAuth}/>}/>
+        <Route  path="/Header" element={<Post isAuth={isAuth}/>}/>
         <Route  path="/navbar" element={<Navbar isAuth={isAuth}/>}/>
         <Route path="/Feed" element={<Post isAuth={isAuth} />} />
         <Route path="/Home" element={<Feed isAuth={isAuth} />} />
