@@ -28,11 +28,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Feed isAuth={isAuth} />} />
         <Route  path="/Header" element={<post isAuth={isAuth}/>}/>
-        <Route  path="/Navbar" element={<Navbar isAuth={isAuth}/>}/>
+        <Route  path="/navbar" element={<Navbar isAuth={isAuth}/>}/>
         <Route path="/Feed" element={<Post isAuth={isAuth} />} />
         <Route path="/Home" element={<Feed isAuth={isAuth} />} />
         <Route path="/Post" element={<Post isAuth={isAuth} />} /> {/* Use the `element` prop instead of `component` */}
-        <Route path="/Login" element={<Login setIsAuth={setIsAuth}/>} />
+        <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
       </Routes>
     </Router>
   );
