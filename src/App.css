@@ -1,30 +1,32 @@
-.App {
-    text-align: center;
-  }
-  body {
+/* Basic Reset */
+body {
     padding: 0%;
     margin: 0%;
     font-family: Arial, Helvetica, sans-serif;
   }
   
-  .header{
-    margin: 0;
-    width: 100%;
-    height: 80px;
-    background-color: #001847;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(214, 19, 19);
-    text-decoration: none;
-  } 
+  * {
+    list-style: none;
+  }
   
   a {
     color: rgb(90, 88, 88);
     text-decoration: none;
     margin: 10px;
     font-size: 25px;
+  }
+  
+  /* Header */
+  .header {
+    margin: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #001847;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(214, 19, 19);
+    text-decoration: none;
   }
   
   .createPostPage {
@@ -44,15 +46,13 @@
     color: rgb(180, 170, 170);
     display: flex;
     flex-direction: column;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   font-size: medium;
-   
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
   }
   
   .cpContainer h1 {
     text-align: center;
     text-shadow: #d92ac4;
-
   }
   
   .cpContainer label {
@@ -60,6 +60,7 @@
     color: #e0b6b6;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
+  
   .cpContainer .inputGp {
     margin-top: 30px;
     display: flex;
@@ -77,6 +78,7 @@
   .inputGp input {
     height: 40px;
   }
+  
   .inputGp textarea {
     height: 150px;
   }
@@ -89,11 +91,8 @@
     cursor: pointer;
     font-size: 18px;
   }
-  input,
-  textarea {
-    margin-top: 5px;
-  }
   
+  /* Login Page */
   .loginPage {
     width: 100vw;
     height: calc(100vh - 80px);
@@ -105,45 +104,6 @@
   
   .loginPage p {
     font-size: 30px;
-  }
-  
-  * {
-    list-style: none;
-  }
-  /* GOOGLE BUTTOn */
-  .login-with-google-btn {
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    padding: 5px 16px 12px 42px;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-    color: #262323;
-    font-size: 25px;
-    font-weight: 500;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
-    background-color: rgb(175, 147, 147);
-    background-repeat: no-repeat;
-    background-position: 12px 11px;
-  }
-  .login-with-google-btn:hover {
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
-  }
-  .login-with-google-btn:active {
-    background-color: #928989;
-  }
-  .login-with-google-btn:focus {
-    outline: none;
-    box-shadow: 0 -1px 0 rgba(181, 29, 29, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
-      0 0 0 3px #c8dafc;
-  }
-  .login-with-google-btn:disabled {
-    filter: grayscale(100%);
-    background-color: #ebebeb;
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-    cursor: not-allowed;
   }
   
   .homePage {
@@ -166,56 +126,30 @@
     margin: 20px;
     padding: 20px;
     border-radius: 15px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    /* Style the scrollbar itself */
-::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-}
-
-/* Style the scrollbar track (the background area) */
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1); /* Decrease opacity of the track */
-}
-
-/* Style the scrollbar thumb (the draggable part) */
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3); /* Decrease opacity of the thumb */
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
-
-/* Style the scrollbar thumb on hover (to make it more visible when hovered) */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.5);
-}
-
+    font-family: Georgia, 'Times New Roman', Times, serif;
   }
   
   .post .postHeader {
     display: flex;
     justify-content: center;
     width: 100%;
-   
   }
   
   .postHeader .title {
     flex: 70%;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 30px;
-    
   }
+  
   .postHeader .deletePost {
     flex: 50%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    
   }
   
   .deletePost button {
     border: none;
-
-  
     background: none;
     font-size: 35px;
     cursor: pointer;
@@ -231,16 +165,118 @@
     overflow: hidden;
     overflow-y: auto;
   }
-   
-/* styles.css */
-.text-shadow {
-  text-shadow: 2px 2px 4px rgba(6, 5, 5, 0.6);
-}
-
-.text-shadow-lg {
-  text-shadow: 4px 4px 8px rgba(168, 11, 11, 0.5);
-}
-
-.text-shadow-xl {
-  text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4);
-}
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Track background */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3); /* Thumb color */
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5); /* Thumb hover color */
+  }
+  
+  /* Google Button */
+  .login-with-google-btn {
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    padding: 5px 16px 12px 42px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    color: #262323;
+    font-size: 25px;
+    font-weight: 500;
+    background-color: rgb(175, 147, 147);
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+  }
+  
+  .login-with-google-btn:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .login-with-google-btn:active {
+    background-color: #928989;
+  }
+  
+  .login-with-google-btn:focus {
+    outline: none;
+    box-shadow: 0 -1px 0 rgba(181, 29, 29, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+      0 0 0 3px #c8dafc;
+  }
+  
+  .login-with-google-btn:disabled {
+    filter: grayscale(100%);
+    background-color: #ebebeb;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .cpContainer {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .homePage .post {
+      width: 90%;
+    }
+  
+    .postHeader .title {
+      font-size: 24px;
+    }
+  
+    .deletePost button {
+      font-size: 30px;
+    }
+  
+    .cpContainer h1 {
+      font-size: 24px;
+    }
+  
+    .loginPage p {
+      font-size: 25px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .header {
+      height: 60px;
+    }
+  
+    .cpContainer {
+      width: 95%;
+      padding: 10px;
+    }
+  
+    .homePage .post {
+      width: 95%;
+    }
+  
+    .postHeader .title {
+      font-size: 20px;
+    }
+  
+    .deletePost button {
+      font-size: 25px;
+    }
+  
+    .cpContainer h1 {
+      font-size: 20px;
+    }
+  
+    .loginPage p {
+      font-size: 20px;
+    }
+  }
+  

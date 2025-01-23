@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Us
 import "./App.css";
 import Login from "./Components/login";
 import Feed from "./Components/Home";
+import Navbar from "./Components/Navbar.jsx";
 
 function App() {
 
@@ -16,14 +17,18 @@ function App() {
   )
   return (
     <Router> 
-      <Header isAuth={isAuth} setIsAuth={setIsAuth} />
+
+      <Navbar/>
+      {/* <Header isAuth={isAuth} setIsAuth={setIsAuth} /> */}
       
       {/* Use Routes to wrap the Route components */}
       {/* <Feed isAuth={isAuth} setIsAuth={setIsAuth}/>
       <Post isAuth={isAuth} setIsAuth={setIsAuth}/>
       <Login isAuth={isAuth} setIsAuth={setIsAuth}/> */}
       <Routes>
+        <Route path="/" element={<Feed isAuth={isAuth} />} />
         <Route  path="/Header" element={<post isAuth={isAuth}/>}/>
+        <Route  path="/Navbar" element={<Navbar isAuth={isAuth}/>}/>
         <Route path="/Feed" element={<Post isAuth={isAuth} />} />
         <Route path="/Home" element={<Feed isAuth={isAuth} />} />
         <Route path="/Post" element={<Post isAuth={isAuth} />} /> {/* Use the `element` prop instead of `component` */}

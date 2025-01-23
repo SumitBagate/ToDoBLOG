@@ -100,11 +100,11 @@ function Header({isAuth,setIsAuth}) {
           </>
           )
           }
-            <button className="px-4 py-2.5 text-sm rounded font-bold text-white border-2 border-[#1d294f] bg-[#1d294f] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#1d294f]">
+            {/* <button className="px-4 py-2.5 text-sm rounded font-bold text-white border-2 border-[#1d294f] bg-[#1d294f] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#1d294f]">
               Start free trial
-            </button>
+            </button> */}
 
-            <button className="lg:hidden">
+            * <button className="lg:hidden">
               <svg className="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
@@ -112,7 +112,7 @@ function Header({isAuth,setIsAuth}) {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </button>
+            </button> *
           </div>
         </div>
       </header>
