@@ -31,7 +31,7 @@ function Feed({isAuth}) {
   };
   
   return (
-    <div className="homePage">
+    <div className="homePage" class="flex grid-coloumn-2">
       {postlist.map((post) => {
         return (
           <div className="post">
