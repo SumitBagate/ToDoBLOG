@@ -110,25 +110,24 @@ body {
     width: 100%;
     min-height: calc(100vh - 80px);
     height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
+    gap: 20px; /* Adds space between the grid items */
+    align-items: start; /* Aligns items at the start of the grid cells */
+    padding: 20px;
     background-color: #7a2d71;
-  }
-  
-  .homePage .post {
-    width: 800px;
+}
+
+.homePage .post {
+    width: 100%; /* Full width of the grid cell */
     height: auto;
     max-height: 600px;
     background-color: rgb(116, 137, 201);
     box-shadow: rgba(100, 16, 92, 0.4) 0px 3px 8px;
-    margin: 20px;
     padding: 20px;
     border-radius: 15px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-  }
-  
+}
   .post .postHeader {
     display: flex;
     justify-content: center;
