@@ -40,7 +40,7 @@ export default function Navbar({ isAuth, setIsAuth }) {
     // { name: 'Calendar', to: '/calendar', current: location.pathname === '/calendar' },
   ];
 
-  if (loading) return null;
+  if (loading) return null ;
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
