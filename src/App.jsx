@@ -1,37 +1,31 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+
 import Header from "./Components/Header";
 import Post from "./Components/Post";
-
-
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Use BrowserRouter and Routes
-
-import "./App.css";
 import Login from "./Components/login";
 import Feed from "./Components/Home";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Components/navbar";
+import ProfilePage from "./Components/Profile"; // Import ProfilePage
+
 function App() {
+  const [isAuth, setIsAuth] = React.useState(
+    localStorage.getItem("isAuth") ? true : false
+  );
 
-  const[isAuth,setIsAuth] = React.useState(localStorage
-  .getItem("isAuth")?true:false
-  )
   return (
-    <Router> 
+    <Router>
+      {/* Pass isAuth and setIsAuth to Navbar */}
+      <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
 
-      <Navbar/>
-      {/* <Header isAuth={isAuth} setIsAuth={setIsAuth} /> */}
-      
-      {/* Use Routes to wrap the Route components */}
-      {/* <Feed isAuth={isAuth} setIsAuth={setIsAuth}/>
-      <Post isAuth={isAuth} setIsAuth={setIsAuth}/>
-      <Login isAuth={isAuth} setIsAuth={setIsAuth}/> */}
       <Routes>
         <Route path="/" element={<Feed isAuth={isAuth} />} />
-        <Route  path="/Header" element={<Post isAuth={isAuth}/>}/>
-        <Route  path="/navbar" element={<Navbar isAuth={isAuth}/>}/>
-        <Route path="/Feed" element={<Post isAuth={isAuth} />} />
-        <Route path="/Home" element={<Feed isAuth={isAuth} />} />
-        <Route path="/Post" element={<Post isAuth={isAuth} />} /> {/* Use the `element` prop instead of `component` */}
-        <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
+        <Route path="/Header" element={<Header />} />
+        <Route path="/Feed" element={<Feed isAuth={isAuth} />} />
+        <Route path="/Post" element={<Post isAuth={isAuth} />} />
+        <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+        <Route path="/profile" element={<ProfilePage isAuth={isAuth} />} /> {/* Add Profile Route */}
       </Routes>
     </Router>
   );

@@ -37,7 +37,7 @@ let navigate = useNavigate();
 const createPost=async()=>{
 await addDoc(postsCollectionRef,{title,postText,content,auther:{name: auth.currentUser.displayName ,id:auth.currentUser.uid  }}) 
 console.log(post)
-navigate ('/Home')
+navigate ('/')
 
 };
 

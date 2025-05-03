@@ -2,52 +2,44 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
+import ProfilePage from "./Profile";  // Remove './Components' if the file is inside the same folder
 
 export default function Navbar({ isAuth, setIsAuth }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-  // Function to sign out the user
-  const signUserOut = async () => {
-    try {
-      await signOut(auth);
-      localStorage.clear();
-      setIsAuth(false); // Update state
-      navigate('/login');
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
-  };
-
-  // Monitor authentication state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuth(!!user);
+      setLoading(false);
       if (user) {
-        setIsAuth(true); // Update the `isAuth` state when a user is logged in
+        setUser(user);  // Set user data when logged in
       } else {
-        setIsAuth(false); // Update the `isAuth` state when logged out
+        setUser(null);  // Clear user data when logged out
       }
     });
 
     return () => unsubscribe();
   }, [setIsAuth]);
 
-  // Utility function to handle class names
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
 
-  // Dynamic navigation items
   const navigation = [
     { name: 'Dashboard', to: '/', current: location.pathname === '/' },
     isAuth
-      ? { name: 'Post', to: '/post', current: location.pathname === '/Post' }
+      ? { name: 'Post', to: '/post', current: location.pathname === '/post' }
       : { name: 'Login', to: '/login', current: location.pathname === '/login' },
-    { name: 'Projects', to: '/projects', current: location.pathname === '/projects' },
-    { name: 'Calendar', to: '/calendar', current: location.pathname === '/calendar' },
+    // { name: 'Projects', to: '/projects', current: location.pathname === '/projects' },
+    // { name: 'Calendar', to: '/calendar', current: location.pathname === '/calendar' },
   ];
+
+  if (loading) return null;
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -55,7 +47,6 @@ export default function Navbar({ isAuth, setIsAuth }) {
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
-              {/* Mobile menu button */}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
@@ -66,14 +57,15 @@ export default function Navbar({ isAuth, setIsAuth }) {
                   )}
                 </Disclosure.Button>
               </div>
-              {/* Logo and navigation links */}
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+                <img
+  className="h-11 ,h-8 w-22 rounded-md"  // or try h-8, h-12 depending on how large you want it
+  src="./src/assets/image.png"
+  alt="KeepStack"
+/>
+
+
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -95,32 +87,47 @@ export default function Navbar({ isAuth, setIsAuth }) {
                   </div>
                 </div>
               </div>
-              {/* Right-side buttons */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {isAuth ? (
-                  <button
-                    onClick={signUserOut}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Sign Out
-                  </button>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Login
-                  </Link>
-                )}
+              {isAuth && user ? (
+  <button
+    onClick={() => navigate('/profile', {
+      state: {
+        user: {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.uid,
+        }
+      }
+    })
+    }  // Pass user as state
+    className="rounded-full w-10 h-10 bg-gray-400"
+  >
+    <img
+      src={user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}
+      alt="Profile"
+      className="w-full h-full rounded-full object-cover"
+    />
+  </button>
+) : (
+  <Link
+    to="/login"
+    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+  >
+    Login
+  </Link>
+)}
+
+              
               </div>
             </div>
           </div>
+
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
               {navigation.map((item) => (
-                <Disclosure.Button
+                <Link
                   key={item.name}
-                  as={Link}
                   to={item.to}
                   className={classNames(
                     item.current
@@ -131,7 +138,7 @@ export default function Navbar({ isAuth, setIsAuth }) {
                   aria-current={item.current ? 'page' : undefined}
                 >
                   {item.name}
-                </Disclosure.Button>
+                </Link>
               ))}
             </div>
           </Disclosure.Panel>
