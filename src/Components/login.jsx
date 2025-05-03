@@ -12,7 +12,7 @@ function Login({setIsAuth})
         .then((result) => {
             localStorage.setItem("isAuth",true)
              setIsAuth(true)
-             navigate("/Home")
+             navigate("/")
             // console.log(result)
         })
         .catch((error) => {

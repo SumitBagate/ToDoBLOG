@@ -4,7 +4,8 @@ import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
-import ProfilePage from "./Profile";  // Remove './Components' if the file is inside the same folder
+import ProfilePage from "./Profile"; 
+// Remove './Components' if the file is inside the same folder
 
 export default function Navbar({ isAuth, setIsAuth }) {
   const location = useLocation();
