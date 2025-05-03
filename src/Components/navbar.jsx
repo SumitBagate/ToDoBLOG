@@ -61,7 +61,7 @@ export default function Navbar({ isAuth, setIsAuth }) {
                 <div className="flex shrink-0 items-center">
                 <img
                     className="h-11 ,h-8 w-22 rounded-md"  // or try h-8, h-12 depending on how large you want it
-                    src="./src/assets/image.png"
+                    src="../src/assets/image.png"
                     alt="KeepStack"
                   />
 
