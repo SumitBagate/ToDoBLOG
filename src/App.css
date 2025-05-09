@@ -3,8 +3,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f8f9fd, #dce3f3); /* Gradient background */
-  color: #333;
+  background: linear-gradient(135deg, #f8f9fd, #d9dadb); /* Gradient background */
+  color: #746666;
   overflow-x: hidden;
 }
 
@@ -40,7 +40,7 @@ a:hover {
 
 /* Create Post Page */
 .createPostPage {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 70px);
   display: grid;
   place-items: center;
   background: linear-gradient(to bottom right, #8429c1, #ed1e79); /* Gradient background */
@@ -49,12 +49,12 @@ a:hover {
 
 .cpContainer {
   width: 100%;
-  max-width: 600px;
+  max-width: 100%; /* Limit the width of the container */
   padding: 25px;
-  background: #fefeff;
+  background: #a2a2b4;
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(14, 14, 14, 0.1);
-  color: #161616;
+  color: #6c6969;
 }
 
 .cpContainer h1 {
@@ -77,269 +77,310 @@ a:hover {
 .inputGp textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
+  border: 1px solid #d3caca;
+  box-shadow: #001847 5px 5px 10px 1px;
+  border-radius: 10px;
+  font-size: 18px;
   transition: border 0.3s;
 }
 
 .inputGp input:focus,
 .inputGp textarea:focus {
-  border-color: #a04cb6; /* Purple focus border */
-  outline: none;
-}
-
-.cpContainer button {
-  width: 100%;
-  padding: 12px;
-  background-color: #d6d0d8; /* Purple button background */
-  color: rgb(101, 99, 99);
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.cpContainer button:hover {
-  background-color: #601272; /* Darker purple on hover */
+  border-color: #837a85; /* Purple focus border */
+  box-shadow: #001847 5px 5px 10px 1px;
+  outline: none; /* Remove default outline */
+  background-color: #f3f4f7; /* Light background on focus */
+  color: #000; /* Dark text on focus */
 }
 
 /* Home Page (Posts Feed) */
 .homePage {
   padding: 30px 20px;
-  background: #f3f4f7;
+  background: #454646;
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.post {
+/* Grid Container for Posts */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  grid-auto-rows: minmax(200px, auto); /* Minimum height for rows */
+  gap: 20px; /* Space between grid items */
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px; /* Limit the width of the grid */
+  margin: 0 auto; /* Center the grid horizontally */
+  padding: 20px; /* Add padding around the grid */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Responsive Styling for Grid */
+@media (max-width: 768px) {
+  .title h1 {
+    font-size: 1.3rem; /* Adjust font size for tablets */
+  }
+  
+  .postTextContainer {
+    font-size: 0.9rem; /* Adjust font size for tablets */
+  }
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns on mobile screens */
+    gap: 15px;
+  }
+  @media (max-width: 480px) {
+  .title h1 {
+    font-size: 1rem; /* Adjust font size for mobile screens */
+  }
+.postTextContainer {
+  height: 60px; /* Fixed height for all post cards */
+  /* Hide overflowing content */
+}
+  .postTextContainer {
+    font-size: 1.1rem; /* Adjust font size for mobile screens */
+  }
+}
+
+  .post {
+    padding: 1.1px;
+  }
+
+  .postTextContainer {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns on very small screens */
+    gap: 10px;
+  }
+
+  .post {
+    padding: 10px;
+  }
+
+  
+
+  .postTextContainer {
+    font-size: 0.8rem;
+  }
+}
+
+/* Post Card Styling */
+.post {
   background-color: #ffffff;
-  margin: 15px 0;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease; /* Smooth transition */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Ensure content stacks vertically */
+  justify-content: space-between; /* Push footer to the bottom */
+  height: 100%; /* Ensure consistent card height */
 }
 
-/* Post Hover Effects */
 .post:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Intense shadow on hover */
-  transform: translateY(-5px); /* Lift effect */
-  background-color: #f8f9fb; /* Light background on hover */
 }
 
+/* Post Header */
 .postHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .title h1 {
-  font-size: 1.8rem;
-  color: #333;
+  font-size: 1.3rem; /* Default font size for larger screens */
+  color: #383a3b;
+  font-weight: bold;
   margin: 0;
 }
 
-.deletePost button {
-  font-size: 1.5rem;
-  color: #d32f2f; /* Red delete button */
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.deletePost button:hover {
-  color: #b71c1c; /* Darker red on hover */
+.title h1:hover {
+  color: #0078d4; /* Blue hover color */
+  transform: translateY(2px); /* Lift effect on hover */
+  transition: transform 0.1s ease;
+
 }
 
+
+
+/* Post Content */
+./* Post Content */
 .postTextContainer {
-  margin-top: 15px;
-  font-size: 1rem;
-  color: #444;
+  font-size: 1rem; /* Default font size */
+  color: #4a4a4a;
   line-height: 1.6;
-  max-height: 300px;
-  overflow-y: auto;
+  margin-bottom: 10px;
+  max-height: 100px; /* Limit height for consistency */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Add ellipsis for long content */
+  overflow-y: scroll;
+  white-space: nowrap; /* Prevent wrapping */
+  flex-grow: 1; /* Allow content to grow and push footer down */
+}
+
+
+/* Post Footer */
+.postFooter {
+  display: flex;
+  justify-content: space-between;
+  /* Align author and date on opposite sides */
+  gap: 40px; /* Space between author and date */
+  align-items: center;
+  font-size: 12px;
+  color: #888;
+  margin-top: auto;
+  padding-top: 70px; /* Push footer to the bottom of the card */
+}
+
+.postFooter h3 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.postFooter h3:hover {
+  color: #0078d4; /* Blue hover color */
+  text-decoration: underline; /* Underline on hover */
+}
+
+.postFooter .postDate {
+  font-style: italic;
+}
+
+/* Post View Page */
+.postViewPage {
+  padding: 20px;
+  background: linear-gradient(135deg, #f3f4f7, #e8eaf6); /* Subtle gradient background */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postViewContainer {
+  max-width: 800px;
+  width: 100%;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in animation */
+}
+
+.postViewTitle {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.postViewMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.postViewAuthor span {
+  font-weight: bold;
+  color: #0078d4; /* Highlight author name */
+}
+
+.postViewDate {
+  font-style: italic;
+}
+
+.postViewContent {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.8;
+  text-align: justify;
+  word-wrap: break-word; /* Ensure long words break properly */
+}
+
+/* Add a Back Button */
+.postViewBackButton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #0078d4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.postViewBackButton:hover {
+  background-color: #005bb5;
 }
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background-color: #888; /* Darker thumb color */
 }
 
-/* Login Page */
-.loginPage {
-  height: calc(100vh - 80px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
 }
 
-.loginPage p {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+body.dark-mode .header {
+  background-color: #1e1e1e;
+  border-color: #333333;
 }
 
-.login-with-google-btn {
-  padding: 12px 20px;
-  font-size: 1.2rem;
-  background-color: #ffffff;
-  border: 1px solid #888;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: box-shadow 0.3s, background 0.3s;
-}
-.login-with-google-btn:hover {
-  background-color: #f0f0f0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+body.dark-mode a {
+  color: #007bff;
 }
 
-/* Responsive Styling */
-@media (max-width: 768px) {
-  .header {
-    font-size: 1.5rem;
+body.dark-mode a:hover {
+  color: #66b2ff;
+}
+
+body.dark-mode button {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+body.dark-mode button:hover {
+  background-color: #555555;
+  color: #ffffff;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .cpContainer {
-    padding: 20px;
-  }
-
-  .title h1 {
-    font-size: 1.5rem;
-  }
-
-  .post {
-    padding: 20px;
-  }
-
-  .postTextContainer {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
-    height: 60px;
-    font-size: 1.3rem;
-  }
-
-  .cpContainer {
-    padding: 15px;
-  }
-
-  .title h1 {
-    font-size: 1.2rem;
-  }
-
-  .loginPage p {
-    font-size: 1.2rem;
-  }
-  .login-with-google-btn  {
-    font-size: 1rem;
-    padding: 10px 16px;
-  }
-}
-/* --------------------------------------- */
-/* Profile Page */
-.profilePage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 80px);
-  background: #f4f4f4;
-}
-
-.profileContainer {
-  width: 100%;
-  max-width: 800px;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  text-align: center;
-}
-
-.profileImageContainer {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 5px solid #7c1e94; /* Purple border around profile image */
-}
-
-.profileImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profileDetails {
-  flex: 1;
-}
-
-.userName {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.userEmail {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-/* Button for Edit Profile (Optional) */
-.editProfileBtn {
-  padding: 12px 20px;
-  background-color: #7c1e94;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-}
-
-.editProfileBtn:hover {
-  background-color: #601272;
-}
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-  .profileContainer {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .profileDetails {
-    margin-top: 20px;
-  }
-
-  .profileImageContainer {
-    width: 120px;
-    height: 120px;
-  }
-
-  .userName {
-    font-size: 1.5rem;
-  }
-
-  .userEmail {
-    font-size: 1rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

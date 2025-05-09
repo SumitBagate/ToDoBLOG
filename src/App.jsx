@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import "./App.css";
 
+import PostView from './Components/PostView';
 import Header from "./Components/Header";
 import Post from "./Components/Post";
 import Login from "./Components/login";
@@ -25,7 +27,8 @@ function App() {
         <Route path="/Feed" element={<Feed isAuth={isAuth} />} />
         <Route path="/Post" element={<Post isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-        <Route path="/profile" element={<ProfilePage isAuth={isAuth} />} /> {/* Add Profile Route */}
+        <Route path="/profile" element={<ProfilePage isAuth={true} />} /> {/* Add Profile Route */}
+        <Route path="/post-view" element={<PostView />} />
       </Routes>
     </Router>
   );

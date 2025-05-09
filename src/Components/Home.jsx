@@ -1,10 +1,12 @@
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { auth, db } from './firebase';
+import { useNavigate } from 'react-router-dom';
 
 function Feed({ isAuth }) {
   const [postlist, setPostlist] = useState([]);
   const postsCollectionRef = collection(db, "posts");
+  const navigate = useNavigate(); // Use navigate for routing
 
   useEffect(() => {
     const getPosts = async () => {
@@ -24,27 +26,46 @@ function Feed({ isAuth }) {
     }
   };
 
+  const openPost = (post) => {
+    navigate('/post-view', {
+      state: {
+        title: post.title,
+        content: post.content,
+        author: post.auther?.name,
+        date: post.date,
+      },
+    });
+  };
+
   return (
     <div className="homePage">
-      {postlist.map((post) => (
-        <div className="post" key={post.id}> {/* Fixed warning: added key */}
-          <div className="postHeader">
-            <div className="title">
-              <h1>{post.title}</h1>
+      <div className="gridContainer">
+        {postlist.map((post) => (
+          <div className="post" key={post.id}>
+            <div className="postHeader">
+              <div className="title" onClick={() => openPost(post)}>
+                <h1>{post.title}</h1>
+              </div>
+              <div className="deletePost">
+                {isAuth && post.auther?.id === auth.currentUser?.uid && (
+                  <button onClick={() => deletePost(post.id)}>&#128465;</button>
+                )}
+              </div>
             </div>
-            <div className="deletePost">
-              {isAuth && post.auther?.id === auth.currentUser?.uid && (
-                <button onClick={() => deletePost(post.id)}>&#128465;</button>
-              )}
+              <div
+                  className="postTextContainer"
+                  dangerouslySetInnerHTML={{
+                    __html: post.content ? post.content.slice(2,120) + '...' : 'No content available',
+                  }}
+                  onClick={() => openPost(post)}
+                ></div>
+            <div className="postFooter">
+              <h3>@{post.auther?.name || 'Unknown Author'}</h3>
+              <p className="postDate">{new Date(post.date?.seconds * 1000).toLocaleString()}</p>
             </div>
           </div>
-          <div
-            className="postTextContainer"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          ></div>
-          <h3>@{post.auther?.name || 'Unknown Author'}</h3>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
