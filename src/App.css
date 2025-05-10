@@ -44,7 +44,7 @@ a:hover {
   display: grid;
   place-items: center;
   background: linear-gradient(to bottom right, #8429c1, #ed1e79); /* Gradient background */
-  padding: 20px;
+  padding: 10px;
 }
 
 .cpContainer {
@@ -100,54 +100,55 @@ a:hover {
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
+  
 }
 
 /* Grid Container for Posts */
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-  grid-auto-rows: minmax(200px, auto); /* Minimum height for rows */
+  grid-template-columns: repeat(auto-fit, minmax(2, 1fr)); /* Responsive grid */
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive rows */
+  grid-auto-flow: dense; /* Fill the grid with items */
+  
+margin-left: 0px; /* Align grid to the left */
+margin-right: 0px; /* Align grid to the right */
+  grid-auto-rows: minmax(10px, auto); /* Minimum height for rows */
   gap: 20px; /* Space between grid items */
   width: 100%;
-  max-width: 1200px; /* Limit the width of the grid */
-  margin: 0 auto; /* Center the grid horizontally */
-  padding: 20px; /* Add padding around the grid */
+  padding: 10px; /* Add padding around the grid */
   box-sizing: border-box; /* Include padding in width calculation */
+ margin-top: 20px; /* Space above the grid */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
+  
 }
+
+
 
 /* Responsive Styling for Grid */
 @media (max-width: 768px) {
   .title h1 {
-    font-size: 1.3rem; /* Adjust font size for tablets */
+    font-size: 1.3rem; 
+    /* Adjust font size for tablets */
   }
   
-  .postTextContainer {
-    font-size: 0.9rem; /* Adjust font size for tablets */
-  }
-  .gridContainer {
-    grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns on mobile screens */
-    gap: 15px;
+ .gridContainer {
+    grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns on very small screens */
+    gap: 10px;
   }
   @media (max-width: 480px) {
   .title h1 {
     font-size: 1rem; /* Adjust font size for mobile screens */
   }
-.postTextContainer {
-  height: 60px; /* Fixed height for all post cards */
-  /* Hide overflowing content */
-}
-  .postTextContainer {
-    font-size: 1.1rem; /* Adjust font size for mobile screens */
-  }
+
 }
 
   .post {
-    padding: 1.1px;
+    padding: 10px;
   }
 
-  .postTextContainer {
-    font-size: 0.9rem;
-  }
+ 
 }
 
 @media (max-width: 480px) {
@@ -162,14 +163,12 @@ a:hover {
 
   
 
-  .postTextContainer {
-    font-size: 0.8rem;
-  }
+  
 }
 
 /* Post Card Styling */
 .post {
-  background-color: #ffffff;
+  background-color: #cac4c4;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -189,9 +188,10 @@ a:hover {
 /* Post Header */
 .postHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 15px;
+ 
 }
 
 .title h1 {
@@ -199,44 +199,79 @@ a:hover {
   color: #383a3b;
   font-weight: bold;
   margin: 0;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+
 }
 
 .title h1:hover {
   color: #0078d4; /* Blue hover color */
   transform: translateY(2px); /* Lift effect on hover */
-  transition: transform 0.1s ease;
+  transition: transform 0.1s easeF;
 
 }
 
 
 
-/* Post Content */
-./* Post Content */
+
 .postTextContainer {
   font-size: 1rem; /* Default font size */
   color: #4a4a4a;
   line-height: 1.6;
-  margin-bottom: 10px;
-  max-height: 100px; /* Limit height for consistency */
+  max-height: 100%; /* Limit height for consistency */
   overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Add ellipsis for long content */
-  overflow-y: scroll;
-  white-space: nowrap; /* Prevent wrapping */
-  flex-grow: 1; /* Allow content to grow and push footer down */
+  text-overflow: ellipsis; /* Addh ellipsis for long content */
+  white-space: none; /* Prevent wrapping */
+  text-emphasis: none;
+  text-combine-upright:none;
+  display: -webkit-box; /* Use flexbox for layout */
+  text-overflow: none;
+  flex-grow: 1;
+
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical; 
+  background-color: #cccbcb;
+  border:solid  #000 0.1px;
+  border-radius: 11px;/* Allow content to grow and push footer down */
+  
+}
+.deletePost{
+  color: #ae1818;
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer;
+ padding-right: 0px;
+
+  padding-left: 10px;
+  font-size: 1rem;
+  align-self: flex-end; /* Align delete button to the right */
+
+}
+.readMoreButton {
+  background: none;
+  border: none;
+  color: #0078d4;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  text-decoration: underline;
 }
 
-
+.readMoreButton:hover {
+  color: #005bb5;
+}
 /* Post Footer */
 .postFooter {
   display: flex;
   justify-content: space-between;
   /* Align author and date on opposite sides */
-  gap: 40px; /* Space between author and date */
+  gap: 10px; /* Space between author and date */
   align-items: center;
   font-size: 12px;
-  color: #888;
-  margin-top: auto;
-  padding-top: 70px; /* Push footer to the bottom of the card */
+  color: #626060;
+  margin-top: auto; /* Push footer to the bottom */
+  padding-top: 10px; /* Push footer to the bottom of the card */
 }
 
 .postFooter h3 {
@@ -256,8 +291,7 @@ a:hover {
 /* Post View Page */
 .postViewPage {
   padding: 20px;
-  background: linear-gradient(135deg, #f3f4f7, #e8eaf6); /* Subtle gradient background */
-  min-height: 100vh;
+   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -266,10 +300,10 @@ a:hover {
 .postViewContainer {
   max-width: 800px;
   width: 100%;
-  background: #ffffff;
+  background: #f6e9e9;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 10 8px 20px rgba(1, 1, 0, 0.5); /* Soft shadow */
   animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in animation */
 }
 
@@ -303,7 +337,7 @@ a:hover {
 
 .postViewContent {
   font-size: 1.1rem;
-  color: #444;
+  color: #5a4646;
   line-height: 1.8;
   text-align: justify;
   word-wrap: break-word; /* Ensure long words break properly */
@@ -315,8 +349,8 @@ a:hover {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #0078d4;
+  color: #d6bdbd;
+  background-color: #818d97;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -326,9 +360,19 @@ a:hover {
 }
 
 .postViewBackButton:hover {
-  background-color: #005bb5;
+  background-color: #8b8c8d;
 }
+.postViewEditButton{
+  background-color:  #686363;
+  color: #d6bdbd;
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: background 0.3s ease;
 
+}
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;

@@ -1,7 +1,8 @@
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { auth, db } from './firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import DOMPurify from 'dompurify';
 
 function Feed({ isAuth }) {
   const [postlist, setPostlist] = useState([]);
@@ -33,6 +34,7 @@ function Feed({ isAuth }) {
         content: post.content,
         author: post.auther?.name,
         date: post.date,
+         authorId: post.auther?.id, 
       },
     });
   };
@@ -42,26 +44,36 @@ function Feed({ isAuth }) {
       <div className="gridContainer">
         {postlist.map((post) => (
           <div className="post" key={post.id}>
-            <div className="postHeader">
-              <div className="title" onClick={() => openPost(post)}>
-                <h1>{post.title}</h1>
-              </div>
               <div className="deletePost">
                 {isAuth && post.auther?.id === auth.currentUser?.uid && (
                   <button onClick={() => deletePost(post.id)}>&#128465;</button>
                 )}
               </div>
+            <div className="postHeader">
+              <div className="title" onClick={() => openPost(post)}>
+                <h1>{post.title}</h1>
+              </div>
             </div>
-              <div
-                  className="postTextContainer"
-                  dangerouslySetInnerHTML={{
-                    __html: post.content ? post.content.slice(2,120) + '...' : 'No content available',
-                  }}
+               <div
+                  // className="postTextContainer"
+                  // dangerouslySetInnerHTML={{
+                  //   __html: post.content ?DOMPurify.sanitize(
+                  //             post.content
+                  //             .replace(/(\r\n|\n|\r)/gm, ' ') // Replace line breaks with a space
+                  //             .replace(/\s+/g, ' ') // Replace multiple spaces with a single space
+                  //           ) .slice(0,120) + '...' : 'No content available',
+                  // }}
                   onClick={() => openPost(post)}
-                ></div>
-            <div className="postFooter">
+                ></div> 
+                
+           <div className="postFooter">
               <h3>@{post.auther?.name || 'Unknown Author'}</h3>
-              <p className="postDate">{new Date(post.date?.seconds * 1000).toLocaleString()}</p>
+            <h3>
+                {post.date?.toDate? post.date.toDate().toLocaleDateString()
+                  : 'No date available'}
+              </h3>
+
+                            
             </div>
           </div>
         ))}

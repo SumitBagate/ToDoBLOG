@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { addDoc } from 'firebase/firestore';
 import { auth,db } from './firebase';
 import { collection } from 'firebase/firestore';
-import { data, useNavigate } from 'react-router-dom'; 
+import {  useNavigate } from 'react-router-dom'; 
 import React, { useState, useRef, useMemo } from 'react';
 import JoditEditor from "jodit-react";
+import { serverTimestamp } from 'firebase/firestore';
 
 
 
@@ -48,9 +49,12 @@ await addDoc(postsCollectionRef,{
     name: auth.currentUser.displayName ,
     id:auth.currentUser.uid,
     },
-    data: new Date(),
+    // data: new Date(),
+     date: serverTimestamp(),
   }) 
 console.log(post)
+console.log("Post created");
+
 navigate ('/')
 
 };
