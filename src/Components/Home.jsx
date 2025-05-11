@@ -46,7 +46,16 @@ function Feed({ isAuth }) {
           <div className="post" key={post.id} onClick={() => openPost(post)}>
               <div className="deletePost">
                 {isAuth && post.auther?.id === auth.currentUser?.uid && (
-                  <button onClick={() => deletePost(post.id)}>&#128465;</button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent triggering openPost
+                      if (window.confirm("Are you sure you want to delete this post?")) {
+                        deletePost(post.id);
+                      }
+                    }}
+                  >
+                    &#128465;
+                  </button>
                 )}
               </div>
             <div className="postHeader">
@@ -55,14 +64,6 @@ function Feed({ isAuth }) {
               </div>
             </div>
                <div
-                  // className="postTextContainer"
-                  // dangerouslySetInnerHTML={{
-                  //   __html: post.content ?DOMPurify.sanitize(
-                  //             post.content
-                  //             .replace(/(\r\n|\n|\r)/gm, ' ') // Replace line breaks with a space
-                  //             .replace(/\s+/g, ' ') // Replace multiple spaces with a single space
-                  //           ) .slice(0,120) + '...' : 'No content available',
-                  // }}
                   onClick={() => openPost(post)}
                 ></div> 
                 

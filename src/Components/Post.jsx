@@ -94,14 +94,19 @@ return (
         />
       </div>
 
-      <div className="inputGp editorContainer">
+      <div className=" editorContainer">
         <label>Post</label>
         <JoditEditor
           ref={editor}
           value={content}
+          // config={{
+          //   ...config,
+          //   showPoweredBy: false, // Ensure branding is hidden
+          // }}
           onChange={(newContent) => {
             setContent(newContent);
           }}
+
         />
       </div>
 
