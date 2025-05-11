@@ -43,15 +43,15 @@ function Feed({ isAuth }) {
     <div className="homePage">
       <div className="gridContainer">
         {postlist.map((post) => (
-          <div className="post" key={post.id}>
+          <div className="post" key={post.id} onClick={() => openPost(post)}>
               <div className="deletePost">
                 {isAuth && post.auther?.id === auth.currentUser?.uid && (
                   <button onClick={() => deletePost(post.id)}>&#128465;</button>
                 )}
               </div>
             <div className="postHeader">
-              <div className="title" onClick={() => openPost(post)}>
-                <h1>{post.title}</h1>
+              <div className="title2" onClick={() => openPost(post)}>
+                <h2>{post.title}</h2>
               </div>
             </div>
                <div
